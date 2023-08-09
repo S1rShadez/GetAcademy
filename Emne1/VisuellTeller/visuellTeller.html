@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visuell Teller</title>
+</head>
+<body>
+    <div>
+        <h1 id="numberToChange">0</h1>
+        <button onclick="changeNumber(1)">Pluss 1</button>
+        <button onclick="changeNumber(2)">Minus 1</button>
+    </div>
+    <script>
+        var number = 0;
+        function changeNumber(selectedOperation){
+            if(selectedOperation == 1){
+                number++;
+                document.getElementById('numberToChange').innerHTML = number;
+            }
+            else if(selectedOperation == 2){
+                number--;
+                document.getElementById('numberToChange').innerHTML = number;
+            }
+        }
+    </script>
+</body>
+</html>

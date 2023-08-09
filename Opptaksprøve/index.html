@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        div {
+            color: blue;
+            background-color: lightblue;
+            padding: 10px;
+            margin: 10px;
+            border: solid green 2px;
+            width: 30px;
+            height: 30px;
+            float: left;
+        }
+
+        .newRow {
+            clear: left;
+        }
+
+        .greyBox {
+            color: black;
+            background-color: lightgrey;
+            border: solid black 2px;
+            float: left;
+            width: fit-content;
+            min-width: 30px;
+        }
+
+        .resetButton:hover {
+            background-color: darkgray;
+        }
+
+        .resetButton:active {
+            background-color: lightgrey;
+        }
+
+        .correctlyPlacedNumber {
+            color: lightgreen;
+            background-color: green;
+            border: solid black 2px;
+        }
+    </style>
+    <title>Tallspill</title>
+</head>
+<body>
+
+    <!-- TL == Top Left, TM == Top Mid, TR == Top Right -->
+    <!-- ML == Mid Left, MM == Mid Mid, MR == Mid Right -->
+    <!-- BL == Bottom left, BM == Bottom Mid, BR == Bottom Right -->
+    <div id="TL" onclick="trykk(this, 'TM', 'ML', '', '')">7</div>
+    <div id="TM" onclick="trykk(this, 'TL', 'MM', 'TR', '')">1</div>
+    <div id="TR" onclick="trykk(this, 'TM', 'MR', '', '')">2</div>
+
+    <div id="ML" onclick="trykk(this, 'TL', 'MM', 'BL', '')" class="newRow">5</div>
+    <div id="MM" onclick="trykk(this, 'TM', 'ML', 'BM', 'MR')"></div>
+    <div id="MR" onclick="trykk(this, 'TR', 'MM', 'BR', '')">3</div>
+
+    <div id="BL" onclick="trykk(this, 'ML', 'BM', '', '')" class="newRow">8</div>
+    <div id="BM" onclick="trykk(this, 'BL', 'MM', 'BR', '')">4</div>
+    <div id="BR" onclick="trykk(this, 'BM', 'MR', '', '')">6</div>
+
+    <!-- Number of clicks display -->
+    <div class="newRow greyBox" id="counter">Antall klikk: 0</div>
+    <div class="greyBox resetButton" onclick="resetGame()">Prøv på nytt</div>
+
+    <script>
+        var blankRute = document.getElementById("MM");
+        var antallKlikk = 0;
+        //Initial placement check before the game starts (row 92 for more details)
+        sjekkPlassering();
+        var korrektPlassert = 0;
+        resetGame();
+
+        function trykk(tagElement, var1, var2, var3, var4) {
+            if (document.getElementById(var1).innerHTML == '') {
+                blankRute.innerHTML = tagElement.innerHTML;
+                tagElement.innerHTML = '';
+                blankRute = tagElement
+            }
+            else if (document.getElementById(var2).innerHTML == '') {
+                blankRute.innerHTML = tagElement.innerHTML;
+                tagElement.innerHTML = '';
+                blankRute = tagElement
+            }
+            else if (document.getElementById(var3).innerHTML == '') {
+                blankRute.innerHTML = tagElement.innerHTML;
+                tagElement.innerHTML = '';
+                blankRute = tagElement
+            }
+            else if (document.getElementById(var4).innerHTML == '') {
+                blankRute.innerHTML = tagElement.innerHTML;
+                tagElement.innerHTML = '';
+                blankRute = tagElement
+            }
+            antallKlikk++;
+            document.getElementById("counter").innerHTML = "Antall klikk: " + antallKlikk;
+            //Placement check after the the player has interacted
+            sjekkPlassering();
+        }
+
+        //A function that checks the placement of the numbers, and changes the color of the square to blue (if placed wrongly) and green (if placed correctly)
+        function sjekkPlassering() {
+            if (document.getElementById('TL').innerHTML == "1" && !document.getElementById('TL').classList.contains("correctlyPlacedNumber")) {
+                document.getElementById('TL').classList += "correctlyPlacedNumber"; //Adds CSS variable to the HTML element
+            } else if (document.getElementById('TL').innerHTML != "1") {
+                document.getElementById('TL').classList = "";//Removes CSS element
+            }
+
+            if (document.getElementById('TM').innerHTML == "2" && !document.getElementById('TM').classList.contains("correctlyPlacedNumber")) {
+                document.getElementById('TM').classList += "correctlyPlacedNumber";
+            } else if (document.getElementById('TM').innerHTML != "2") {
+                document.getElementById('TM').classList = "";
+            }
+
+            if (document.getElementById('TR').innerHTML == "3" && !document.getElementById('TR').classList.contains("correctlyPlacedNumber")) {
+                document.getElementById('TR').classList += "correctlyPlacedNumber";
+            } else if (document.getElementById('TR').innerHTML != "3") {
+                document.getElementById('TR').classList = "";
+            }
+
+            if (document.getElementById('ML').innerHTML == "4" && !document.getElementById('ML').classList.contains("correctlyPlacedNumber")) {
+                document.getElementById('ML').classList += " correctlyPlacedNumber";
+            } else if (document.getElementById('ML').innerHTML != "4") {
+                document.getElementById('ML').classList = "newRow";//Removes CSS element 'correctlyPlacedNumber' but keeps the 'newRow' element
+            }
+
+            if (document.getElementById('MM').innerHTML == "5" && !document.getElementById('MM').classList.contains("correctlyPlacedNumber")) {
+                document.getElementById('MM').classList += "correctlyPlacedNumber";
+            } else if (document.getElementById('MM').innerHTML != "5") {
+                document.getElementById('MM').classList = "";
+            }
+
+            if (document.getElementById('MR').innerHTML == "6" && !document.getElementById('MR').classList.contains("correctlyPlacedNumber")) {
+                document.getElementById('MR').classList += "correctlyPlacedNumber";
+            } else if (document.getElementById('MR').innerHTML != "6") {
+                document.getElementById('MR').classList = "";
+            }
+
+            if (document.getElementById('BL').innerHTML == "7" && !document.getElementById('BL').classList.contains("correctlyPlacedNumber")) {
+                document.getElementById('BL').classList += " correctlyPlacedNumber";
+            } else if (document.getElementById('BL').innerHTML != "7") {
+                document.getElementById('BL').classList = "newRow";//row 115 for explanation
+            }
+
+            if (document.getElementById('BM').innerHTML == "8" && !document.getElementById('BM').classList.contains("correctlyPlacedNumber")) {
+                document.getElementById('BM').classList += "correctlyPlacedNumber";
+            } else if (document.getElementById('BM').innerHTML != "8") {
+                document.getElementById('BM').classList = "";
+            }
+
+            if (document.getElementById('BR').innerHTML == "" && !document.getElementById('BR').classList.contains("correctlyPlacedNumber")) {
+                document.getElementById('BR').classList += "correctlyPlacedNumber";
+            } else if (document.getElementById('BR').innerHTML != "") {
+                document.getElementById('BR').classList = "";
+            }
+        }
+
+        //Restart the game by resetting all the values
+        function resetGame() {
+            const positionList = new Array("TL", "TM", "TR", "ML", "MM", "MR", "BL", "BM", "BR");
+            const numberList = new Array("7", "1", "2", "5", "", "3", "8", "4", "6");
+            for (let i = 0; i < 9; i++) {
+                document.getElementById(positionList[i]).innerHTML = numberList[i];
+            }
+            blankRute = document.getElementById("MM");
+            antallKlikk = 0;
+            document.getElementById("counter").innerHTML = "Antall klikk: " + antallKlikk;
+            korrektPlassert = 0;
+            sjekkPlassering();
+        }
+    </script>
+</body>
+</html>

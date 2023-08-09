@@ -1,0 +1,75 @@
+body {
+    background-color: rgb(56, 55, 55);
+    color: white;
+    display: block;
+    margin: 8px;
+}
+
+.green {
+    background-color: green;
+}
+
+.blue {
+    background-color: blue;
+}
+
+.red {
+    background-color: red;
+}
+
+.yellow {
+    background-color: darkgoldenrod;
+}
+
+.grey {
+    background-color: grey;
+}
+
+.card {
+    border: 1px solid black;
+    width: 500px;
+    margin: 10px;
+    text-align: center;
+    user-select: none;
+    height: max-content;
+}
+
+.card:hover {
+    border: 3px solid black;
+}
+
+.miniCard {
+    background-color: rgb(83, 83, 83);
+    border: 1px solid rgb(41, 41, 41);
+    text-align: left;
+    padding: 5px;
+}
+
+.horizontal {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.vertical {
+    display: flex;
+    flex-direction: column;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(2, 520px);
+    width: auto;
+}
+
+#hkbInfo{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.bodyPart {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
