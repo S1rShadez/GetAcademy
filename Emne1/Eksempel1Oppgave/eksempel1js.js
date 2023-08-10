@@ -93,7 +93,7 @@ function nextImage(buttonNr) {
     }
 }
 
-function previousImage(buttonNr){
+function previousImage(buttonNr) {
     if (buttonNr == 4) {
         if (head == 1) {
             head = 5;
