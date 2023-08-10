@@ -1,4 +1,9 @@
+let timer = 0;
+    
 function startStopwatch() {
-    let timer;
-    document.getElementById('tidTeller').innerHTML = "";
+    setInterval(countTime, 1000);
+}
+
+function countTime(){
+
 }
