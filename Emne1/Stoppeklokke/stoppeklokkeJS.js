@@ -2,13 +2,16 @@ let seconds = 0;
 let minutes = 0;
 let hours = 0;
 let timer;
+let sWatchRunning = false;
 
 function startStopwatch() {
+    if(sWatchRunning){return;}
     timer = setInterval(countTime, 1000);
     if (seconds == 0) {
         seconds = 1;
     document.getElementById('tidTeller').innerHTML = hours + "." + minutes + "." + seconds;
     }
+    sWatchRunning = true;
 }
 
 function countTime() {
@@ -34,6 +37,7 @@ function saveLap() {
 
 function stopTimer(){
     clearInterval(timer);
+    sWatchRunning = false;
 }
 
 function resetAll() {
@@ -43,4 +47,5 @@ function resetAll() {
     hours = 0;
     document.getElementById('tidTeller').innerHTML = "0.0.0";
     document.getElementById('savedLaps').innerHTML = "";
+    sWatchRunning = false;
 }

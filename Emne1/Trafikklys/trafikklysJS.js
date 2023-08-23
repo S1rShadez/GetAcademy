@@ -15,3 +15,33 @@ function changeLights(selectedButton){
         document.getElementById('greenLight').style.backgroundColor = 'green';
     }
 }
+
+let timer;
+let started = false;
+let stopLights = false;
+
+function startLights(){
+    if (started) {
+        clearInterval(timer);
+        timer = setInterval(autoLights, 3000);
+    }
+    else{
+        timer = setInterval(autoLights, 100);
+        started = true;
+        stopLights = false;
+    }
+}
+
+function autoLights(){
+    if(stopLights){return};
+    setTimeout(function(){changeLights(3)}, 500);
+    setTimeout(function(){changeLights(2)}, 1500)
+    setTimeout(function(){changeLights(1)}, 2500);
+    startLights();
+}
+
+function stop(){
+    stopLights = true;
+    started = false;
+    clearInterval(timer);
+}
