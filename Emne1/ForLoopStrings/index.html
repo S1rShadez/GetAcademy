@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+
+<body>
+    <div id="app"></div>
+
+    <script>
+        // model
+        let counter = 0;
+        let reversedWord = "";
+
+        // view
+        updateView();
+        function updateView() {
+            document.getElementById('app').innerHTML = /*HTML*/`
+            <input type="text" id="inputField" placeholder="Enter text here">
+            <button onclick="calculateNow()">Calculate vowels</button><button onclick="reverseText()">Reverse input</button>
+            <div>${counter}</div><div>${reversedWord}</div>
+            `;
+        }
+
+        // controller
+        function calculateNow() {
+            counter = 0;
+            let inputString = document.getElementById('inputField').value;
+            for (let i = 0; i < inputString.length; i++) {
+                if (inputString.charAt(i) == "a" || inputString.charAt(i) == "e" || inputString.charAt(i) == "i" || inputString.charAt(i) == "o" || inputString.charAt(i) == "u") {
+                    counter++;
+                }
+            }
+            updateView();
+        }
+
+        function reverseText() {
+            reversedWord = "";
+            let inputString = document.getElementById('inputField').value;
+            for (let i = 0; i < inputString.length; i++) {
+                reversedWord = inputString.charAt(i) + reversedWord;
+            }
+            updateView();
+        }
+    </script>
+</body>
+
+</html>
