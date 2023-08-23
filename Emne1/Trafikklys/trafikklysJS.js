@@ -34,8 +34,10 @@ function startLights(){
 
 function autoLights(){
     if(stopLights){return};
+    //setTimeout her ser litt rare ut, men det funket ikke med en funksjon med input, 
+    //uten at den funksjonen var wrappa i en ny funksjon
     setTimeout(function(){changeLights(3)}, 500);
-    setTimeout(function(){changeLights(2)}, 1500)
+    setTimeout(function(){changeLights(2)}, 1500);
     setTimeout(function(){changeLights(1)}, 2500);
     startLights();
 }
