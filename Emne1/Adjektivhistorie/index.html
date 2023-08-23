@@ -1,55 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Adjektivhistorie</title>
 </head>
+
 <body>
-    <div id="app"></div> 
-    
+    <div id="app"></div>
+
     <script>
         // model
         let word1 = ".....", word2 = ".....", word3 = ".....", word4 = ".....";
+        let words = ["Green", "Red", "Cat", "Man", "Stared at", "Jumped in", "Pool", "Wall"];
 
         // view
         updateView();
         function updateView() {
             document.getElementById('app').innerHTML = /*HTML*/`
             <div>
-                <p>Once upon a time, there was a ${word1} ${word2} that ${word3} in the ${word4} - and great things happened, the end.</p>
+                <p>Once upon a time, there was a ${word1} ${word2} that ${word3} the ${word4} - and great things happened, the end.</p>
             </div>  
 
             <div style="display: flex;flex-direction: column;width:fit-content;">
-            <button onclick="placeWords(1, this)">Green</button>    
-            <button onclick="placeWords(2, this)">Red</button><br>    
-            <button onclick="placeWords(3, this)">Cat</button>    
-            <button onclick="placeWords(4, this)">Man</button><br>    
-            <button onclick="placeWords(5, this)">Stared</button>    
-            <button onclick="placeWords(6, this)">Jumped</button><br>    
-            <button onclick="placeWords(7, this)">Pool</button>    
-            <button onclick="placeWords(8, this)">Wall</button>    
+            <button onclick="placeWords(1, '${words[0]}')">Green</button>    
+            <button onclick="placeWords(2, '${words[1]}')">Red</button><br>    
+            <button onclick="placeWords(3, '${words[2]}')">Cat</button>    
+            <button onclick="placeWords(4, '${words[3]}')">Man</button><br>    
+            <button onclick="placeWords(5, '${words[4]}')">Stared</button>    
+            <button onclick="placeWords(6, '${words[5]}')">Jumped</button><br>    
+            <button onclick="placeWords(7, '${words[6]}')">Pool</button>    
+            <button onclick="placeWords(8, '${words[7]}')">Wall</button>    
             </div>
             `;
         }
 
         // controller
-        function placeWords(button, contents){
+        function placeWords(button, contents) {
             if (button == 1 || button == 2) {
-                word1 = contents.innerText;
-                //console.log(contents.innerText);
+                word1 = contents;
+                console.log(contents);
             }
             else if (button == 3 || button == 4) {
-                word2 = contents.innerText;
+                word2 = contents;
             }
             else if (button == 5 || button == 6) {
-                word3 = contents.innerText;
+                word3 = contents;
             }
             else if (button == 7 || button == 8) {
-                word4 = contents.innerText;
+                word4 = contents;
             }
             updateView();
         }
     </script>
 </body>
+
 </html>
