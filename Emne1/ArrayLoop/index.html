@@ -21,7 +21,7 @@
         }
 
         function startView(){
-            arrayItems = '';
+            clearArrays();
             return /*HTML*/`
             <div style="margin-left: 43vw; margin-top: 39vh;">
             <button onclick="updateView(task1View())">Oppgave 1 loop</button>
@@ -31,15 +31,20 @@
         }
 
         function task1View(){
+            if(arrayItems !== '' || cartItems !== [])clearArrays();
             return arrayLooper();
         }
 
         function task2View(items){
             if(items == undefined)items = '';
             return /*HTML*/`
+                <div style="margin-left: 43vw; margin-top: 30vh;">
                 <input id="inputTxt" placeholder="Legg til ting i handlelisten">
                 <button onclick="shoppingCart()">Legg til</button>
+                <button onclick="updateView(startView())">Forside</button>\n
+                <button onclick="updateView(task1View())">Oppgave 1 loop</button>
                 <div>${items}</div>
+                </div>
             `;
         }
 
@@ -50,7 +55,7 @@
             }
             arrayItems += /*HTML*/`
             <button onclick="updateView(startView())">Forside</button>\n
-            <button onclick="updateView(task2View())">Oppgave 2 loop</button>
+            <button onclick="clearArrays();updateView(task2View())">Oppgave 2 loop</button>
             `;
             return /*HTML*/`<div style="margin-left: 43vw; margin-top: 30vh;">${arrayItems}</div>`;
         }
@@ -67,6 +72,11 @@
                 arrayString += `${array[i]}`;
             }
             return arrayString;
+        }
+
+        function clearArrays(){
+            arrayItems = '';
+            cartItems = [];
         }
     </script>
 </body>
