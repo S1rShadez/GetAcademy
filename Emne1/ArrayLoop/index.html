@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array loops</title>
+</head>
+<body>
+    <div id="app"></div>
+    
+    <script>
+        // model
+        let array1 = ["katt", "bil", "båt", "hund", "menneske", "alien"];
+        let arrayItems = '';
+        let cartItems = [];
+
+        // view
+        updateView(startView());
+        function updateView(view) {
+            document.getElementById('app').innerHTML = view;
+        }
+
+        function startView(){
+            arrayItems = '';
+            return /*HTML*/`
+            <div style="margin-left: 43vw; margin-top: 39vh;">
+            <button onclick="updateView(task1View())">Oppgave 1 loop</button>
+            <button onclick="updateView(task2View())">Oppgave 2 loop</button>
+            </div>
+            `;
+        }
+
+        function task1View(){
+            return arrayLooper();
+        }
+
+        function task2View(items){
+            if(items == undefined)items = '';
+            return /*HTML*/`
+                <input id="inputTxt" placeholder="Legg til ting i handlelisten">
+                <button onclick="shoppingCart()">Legg til</button>
+                <div>${items}</div>
+            `;
+        }
+
+        // controller
+        function arrayLooper(){
+            for (let i = 0; i < array1.length; i++) {
+                arrayItems += /*HTML*/`<div>Runde ${i} i arrayet har følgende item: ${array1[i]}</div>\n`;
+            }
+            arrayItems += /*HTML*/`
+            <button onclick="updateView(startView())">Forside</button>\n
+            <button onclick="updateView(task2View())">Oppgave 2 loop</button>
+            `;
+            return /*HTML*/`<div style="margin-left: 43vw; margin-top: 30vh;">${arrayItems}</div>`;
+        }
+
+        function shoppingCart(){
+            let cartInput = document.getElementById('inputTxt').value;
+            cartItems.push(`<li>${cartInput}</li>\n`);
+            updateView(task2View(looper(cartItems)));
+        }
+
+        function looper(array){
+            let arrayString = '';
+            for (let i = 0; i < array.length; i++) {
+                arrayString += `${array[i]}`;
+            }
+            return arrayString;
+        }
+    </script>
+</body>
+</html>
