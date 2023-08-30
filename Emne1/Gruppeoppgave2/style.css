@@ -1,0 +1,58 @@
+body {
+    margin: 0;
+    background-color: rgb(118, 97, 73);
+}
+
+.gridSystem {
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    width: 21vw;
+    height: 43vh;
+    margin-left: 703px;
+    margin-top: -612px;
+}
+
+.venstre {
+    float: left;
+}
+
+.bilde {
+    border: 2px solid black;
+    width: 200px;
+    height: 200px;
+
+}
+
+#venstreBoks {
+    border: 3px solid black;
+    height: 606px;
+    width: 700px;
+    position: relative;
+}
+
+.emoji {
+    position: absolute;
+    float: left;
+    margin-top: -500px;
+    margin-left: 194px;
+    border-radius: 50%;
+    overflow: hidden;
+    opacity: 100%;
+}
+
+.mainBox {
+    margin-top: 150px;
+    margin-left: 600px;
+}
+
+#søyleKontainer {
+    display: grid;
+    height: 300px;
+    width: 430px;
+    background-color: lightgrey;
+    border: 5px solid black;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(10, 1fr);
+    ;
+}

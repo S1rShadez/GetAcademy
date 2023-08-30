@@ -1,0 +1,49 @@
+funksjoner:
+sult()
+tørst()
+stress()
+blære()
+fokus()
+samvær()
+jobbe()
+disse kan være: kroppsTilstand()
+setInterval()
+setTimeout()
+
+søyler som fylles opp med en setInterval() 
+fargen i søylen fylles opp fra 0-100% height etterhvert
+
+søylene tømmes ved å trykke på de forskjellige sideknappene
+
+de andre søylene kan påvirkes av forskjellige knapper
+
+fokus søylen kan starte øverst og gå nedopver med tid
+
+søylene kan fylles/tømmes i forskjelige hastigheter
+
+ansiktet går fra "happy" til "nøytral" til "trist" for jo flere behov som ikke blir møtt og deretter så quitter proggern jobben
+
+"angry quitting face" >:( 
+
+HTML
+tabell med tre kolonner
+|      |-|-| 
+4 rader 
+7 kolonner for status
+|-|-|-|-|-|-|-|
+container div
+grid view
+
+vi jobber i 2+2+1 (1'ern er assistent for begge parene)
+
+Arbeidstid:
+Tirsdag: 13.15 - 14.30 - 1t 15m - 
+Onsdag: 
+09.30 - 10.30 -  15m pause, 
+10.45 - 11.30 -  lunsj, 
+12.15 - 13.15 -  2t 45m
+-totalt 4 timer arbeid
+Torsdag:
+-ekstra tid om det trengs 
+
+fordeling av oppgaver blir ca 50/50 mellom parene med hjelp av +1 personen
