@@ -5,15 +5,15 @@ let wcRow = 10;
 let focusRow = 1;
 let restlessRow = 10;
 let waterRow = 10;
-let mood = 2;
+let mood = 1;
 
 let timers = [
     setInterval(increaseHunger, 2000),
     setInterval(increaseStress, 1500), 
     setInterval(increaseWc, 3000), 
-    setInterval(decreaseFocus, 1000), 
+    setInterval(decreaseFocus, 1250), 
     setInterval(increaseRestless, 2500), 
-    setInterval(increaseThirst, 750)];
+    setInterval(increaseThirst, 1000)];
 
 //View
 checkTemper()
