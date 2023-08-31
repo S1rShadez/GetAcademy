@@ -2,7 +2,7 @@
 let taskList = [];
 let taskBeingEdited = 0;
 
-taskList.push({taskDesc: "bake kake", isDone: true, id: taskList.length, editMode: false, person: "Arthur", endDate: "31/12/2023", createdDate: new Date().toLocaleDateString()});
+taskList.push({taskDesc: "bake kake", isDone: true, isDoneDate: "2025-10-03", id: taskList.length, editMode: false, person: "Arthur", endDate: "2025-10-05", createdDate: new Date().toISOString().slice(0, 10)});
 
 // view
 updateView();
@@ -15,13 +15,14 @@ function updateView() {
             <th>Ansvar</th>
             <th>Frist</th>
             <th>Gjort</th>
+            <th>Gjort dato</th>
             <th>Opprettet</th>
         </tr>
         ${loadTasks() || ''}
     </table> 
     <input id="taskInput" type="text" placeholder="Skriv oppgave her">
     <input id="personInput" type="text" placeholder="Ansvarsperson her">
-    <span>Frist: </span><input type="number" min="01" max="31" placeholder="dd"><input type="number" min="01" max="12" placeholder="mm"><input type="number" min="2023" max="2100" placeholder="yyyy">
+    <span>Frist: </span><input id="dateInput" type="date">
     <button onclick="addTask()">Legg til</button>
     `;
 }
@@ -31,8 +32,8 @@ function addTask(){
     let taskDesc = document.getElementById('taskInput').value; 
     let isDone = false;
     let person = document.getElementById('personInput').value;
-    let endDate = '';
-    taskList.push({taskDesc, isDone, id: taskList.length, editMode: false, person, endDate, createdDate: new Date().toLocaleDateString()});
+    let endDate = new Date(document.getElementById('dateInput').value).toISOString().slice(0, 10);
+    taskList.push({taskDesc, isDone, id: taskList.length, editMode: false, person, endDate, createdDate: new Date().toISOString().slice(0, 10)});
     updateView();
 }
 
@@ -42,9 +43,10 @@ function loadTasks(){
         tempList += `
         <tr><td>${isEditMode(taskList[i], "desc")}</td>
         <td>${isEditMode(taskList[i], "person")}</td>
-        <td>${taskList[i].endDate}</td>
+        <td>${isEditMode(taskList[i], "endDate")}</td>
         <td><input type="checkbox" ${taskIsDone(taskList[i])} id="${taskList[i].id}" onchange="checkboxCheck(this)"/></td>
-        <td>${taskList[i].createdDate}</td>
+        <td>${convertDate(taskList[i].isDoneDate)}</td>
+        <td>${convertDate(taskList[i].createdDate)}</td>
         <td><button id="${taskList[i].id}" onclick="taskRemove(this)">Slett</button></td>
         <td><button id="${taskList[i].id}" ${isEditMode(taskList[i], "editButton")}</td>`;
     }
@@ -54,6 +56,7 @@ function loadTasks(){
 function isEditMode(task, taskType){
     if(taskType == "desc") return task.editMode ? `<input id="input${task.id}" type="text" value="${task.taskDesc}" />` : task.taskDesc;
     if(taskType == "person") return task.editMode ? `<input id="inputPerson${task.id}" type="text" value="${task.person}" />` : task.person;
+    if(taskType == "endDate") return task.editMode ? `<input id="inputEndDate${task.id}" type="date" value="${task.endDate}" />` : convertDate(task.endDate);
     if(taskType == "editButton") return task.editMode ? `onclick="saveEdit(this)">Lagre</button>` : `onclick="taskEdit(this)">Rediger</button>`;
 }
 
@@ -64,10 +67,13 @@ function taskIsDone(task){
 function checkboxCheck(checkBox){
     if(checkBox.checked){
         taskList[checkBox.id].isDone = true;
+        taskList[checkBox.id].isDoneDate = new Date().toISOString().slice(0, 10);
     }
     else if(!checkBox.checked){
         taskList[checkBox.id].isDone = false;
+        taskList[checkBox.id].isDoneDate = '';
     }
+    updateView();
 }
 
 function taskRemove(selectedTask){
@@ -91,6 +97,13 @@ function saveEdit(selectedTask){
     taskBeingEdited = 0;
     taskList[selectedTask.id].taskDesc = document.getElementById(`input${selectedTask.id}`).value;
     taskList[selectedTask.id].person = document.getElementById(`inputPerson${selectedTask.id}`).value;
+    taskList[selectedTask.id].endDate = document.getElementById(`inputEndDate${selectedTask.id}`).value;
     taskList[selectedTask.id].editMode = false;
     updateView();
+}
+
+function convertDate(inputDate){
+    let date = new Date(inputDate).toLocaleDateString();
+    if (date == "Invalid Date")return '';
+    return date;
 }

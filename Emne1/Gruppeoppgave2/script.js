@@ -16,7 +16,7 @@ let timers = [
     setInterval(increaseThirst, 1000)];
 
 //View
-checkTemper()
+checkTemper();
 updateCSS();
 function updateCSS(){
     document.getElementById('columnStyle').innerHTML = /*CSS*/`
