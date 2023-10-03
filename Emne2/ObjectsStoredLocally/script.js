@@ -6,7 +6,7 @@ let taskBeingEdited = 0;
 
 
 // view
-updateView();
+updateView(); //importante
 function updateView() {
     document.getElementById('app').innerHTML =
     /*HTML*/`
