@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Codealong</title>
+</head>
+
+<body>
+    <div id="app"></div>
+
+
+    <script>
+        // model
+        let persons = [{fornavn:'Bernt', fylke: 'Vestfold'}, {fornavn: 'Egil', fylke: 'Vestfold'}, {fornavn: 'Svein', fylke: 'Oslo'}];
+
+        // view
+        updateView();
+        function updateView() {
+            document.getElementById('app').innerHTML = /*HTML*/`
+                <input type="text" id="inputPerson">
+                <input type="text" id="inputFylke">
+                <button onclick="addPerson()">Legg til person</button>
+                <button onclick="removeRandomPerson()">Fjern tilfeldig person</button>
+                <div>${showPersons()}</div>
+                <div>${findPersonsIn()}</div>
+            `;
+        }
+
+        // controller
+        function addPerson() {
+            let inputFornavn = document.getElementById('inputPerson').value;
+            let inputFylke = document.getElementById('inputFylke').value;
+            //if(^[a-zA-Z0-9_.-]*$.test)
+
+            let person = {
+                fornavn: inputFornavn,
+                fylke: inputFylke
+            }
+            persons.push(person);
+            updateView();
+        }
+
+        function showPersons(){
+            let personString = '';
+            for(let i = 0; i < persons.length; i++){
+                personString += `Person nr. ${i+1} er ${persons[i].fornavn} og h*n bor i ${persons[i].fylke}<br>`;
+            }
+            return personString;
+        }
+
+        function removeRandomPerson(){
+            let randomPerson = Math.floor(Math.random()* persons.length);
+            persons.splice(randomPerson, 1);
+            updateView();
+        }
+
+        function findPersonsIn(){
+            let personsIn = '';
+            for(let i = 0; i < persons.length; i++){
+                if(persons[i].fylke.includes('Vestfold')){
+                    personsIn += `${persons[i].fornavn} bor i ${persons[i].fylke}<br>`;
+                }
+            }
+            return personsIn;
+        }
+    </script>
+</body>
+
+</html>

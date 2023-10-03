@@ -35,6 +35,7 @@ function addTask(){
     let person = document.getElementById('personInput').value;
     let endDate = new Date(document.getElementById('dateInput').value).toISOString().slice(0, 10);
     taskList.push({taskDesc, isDone, id: taskList.length, editMode: false, person, endDate, createdDate: new Date().toISOString().slice(0, 10)});
+    saveLocalStorage();
     updateView();
 }
 
@@ -74,6 +75,7 @@ function checkboxCheck(checkBox){
         taskList[checkBox.id].isDone = false;
         taskList[checkBox.id].isDoneDate = '';
     }
+    saveLocalStorage();
     updateView();
 }
 
@@ -84,6 +86,7 @@ function taskRemove(selectedTask){
     for(let i = idNr; i < taskList.length; i++){
         taskList[i].id = i;
     }
+    saveLocalStorage();
     updateView();
 }
 
@@ -91,6 +94,7 @@ function taskEdit(selectedTask){
     if(taskBeingEdited)return;
     taskList[selectedTask.id].editMode = true;
     taskBeingEdited = 1;
+    saveLocalStorage();
     updateView();
 }
 
@@ -100,6 +104,7 @@ function saveEdit(selectedTask){
     taskList[selectedTask.id].person = document.getElementById(`inputPerson${selectedTask.id}`).value;
     taskList[selectedTask.id].endDate = document.getElementById(`inputEndDate${selectedTask.id}`).value;
     taskList[selectedTask.id].editMode = false;
+    saveLocalStorage();
     updateView();
 }
 
@@ -110,19 +115,19 @@ function convertDate(inputDate){
 }
 
 function saveLocalStorage(){
-    let stringArray = '';
-    for(let i = 0; i < taskList.length; i++){
-        stringArray += `${taskList[i]}#`;
-    }
+    let stringArray = JSON.stringify(taskList);
     localStorage.setItem('TaskArray', stringArray);
+    //console.log(stringArray);
 }
 
 function loadLocalStorage(){
     if(!localStorage.getItem('TaskArray'))return;
-    let storedArray = localStorage.getItem('TaskArray').split("#");
-    let tempArray = [];
-    for(storedElement in storedArray){
-        tempArray.push(storedElement);
-    }
-    taskList = tempArray;
+    let storedArray = JSON.parse(localStorage.getItem('TaskArray'));
+    //console.log(storedArray);
+    taskList = storedArray;
+    updateView();
+}
+
+function clearLocalStorage(){
+    localStorage.removeItem('TaskArray');
 }
