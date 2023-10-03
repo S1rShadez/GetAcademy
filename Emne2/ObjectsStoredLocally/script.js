@@ -2,7 +2,7 @@
 let taskList = [];
 let taskBeingEdited = 0;
 
-taskList.push({taskDesc: "bake kake", isDone: true, isDoneDate: "2025-10-03", id: taskList.length, editMode: false, person: "Arthur", endDate: "2025-10-05", createdDate: new Date().toISOString().slice(0, 10)});
+//taskList.push({taskDesc: "bake kake", isDone: true, isDoneDate: "2025-10-03", id: taskList.length, editMode: false, person: "Arthur", endDate: "2025-10-05", createdDate: new Date().toISOString().slice(0, 10)});
 
 
 // view
