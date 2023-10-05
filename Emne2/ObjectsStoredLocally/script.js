@@ -110,7 +110,7 @@ function saveEdit(selectedTask){
 
 function convertDate(inputDate){
     let date = new Date(inputDate).toLocaleDateString();
-    if (date == "Invalid Date")return '';
+    if (date == "Invalid Date")return 'Invalid Date';
     return date;
 }
 
