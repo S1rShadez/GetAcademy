@@ -44,7 +44,7 @@
 }
 
 .dashbackgroundimage {
-    background-image: url("../img/forest.jpg");
+    background-image: url("/Emne2/Emne2A3/img/forest.jpg");
     background-repeat: repeat;
     border-radius: 30px 60px;
     /* transform: scaleX(-1); */
