@@ -1,0 +1,21 @@
+#app{
+    width: 100vw;
+    height: 100vh;
+}
+
+.boardSquare{
+    display: inline-block;
+    width: 100px;
+    height: 100px;
+    background-color: rgb(161, 93, 2);
+    border: 1px solid black;
+    text-align: center;
+}
+
+.boardSquare:nth-child(2n){
+    background-color: rgb(108, 63, 3);
+}
+
+img{
+    margin-top: 15px;
+}

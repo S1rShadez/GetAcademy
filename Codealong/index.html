@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hangman</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
+</head>
+
+    <div id="app"></div>
+    
+    <script>
+        // model
+        let wordList = ['squander', 'gregarious', 'luminous', 'furtive', 'ephemeral', 'inscrutable', 'euphoria', 'surreptitious', 'mellifluous', 'serendipity', 'ethereal', 'languid', 'nostalgia', 'quintessential', 'vivacious'];
+        let selectedWord;
+        let guessesNR;
+        let lines = [];
+
+        // view
+        updateView();
+        function updateView() {
+            document.getElementById('app').innerHTML = /*HTML*/`
+                <button onclick="selectWord()">Start game</button>
+                <h1>${''}</h1>
+                <br>
+                <input type="text" id="inputField" autofocus>
+                <button onclick="inputMachine()">submit</button>
+            `;
+        }
+
+        // controller
+        //Random word generator
+        function selectWord(){
+            selectedWord = [...wordList[Math.floor(Math.random() * wordList.length)]];
+
+            lineGenerator();
+        }
+        //input field controller
+        function inputMachine() {
+            let input = document.getElementById('inputField').value;
+            let inputValue = input.value.toLowerCase();
+
+            if (inputValue.length == 1 && /^[A-Za-z]$/.test(inputValue)){
+                
+            }
+        }
+        //line generator
+        function lineGenerator() {
+            let lineNR = selectedWord.length;
+
+            for (let i = 0; i < lineNR; i++) {
+                lines.push("_ ");
+            }
+        }
+    </script>
+</body>
+</html>
+
+<!-- 
+Lag et ordspill der du gir brukeren et tilfeldig ord fra en liste, og brukeren må gjette bokstavene i ordet via et input felt. 
+Lag en liste med ord og generere et tilfeldig ord for hver runde. 
+La brukeren ha et begrenset antall forsøk.
+Vis bokstavene man har gjettet.
+Vis ordet, men ha en _ der man ikke har gjettet bokstaven enda.
+ -->
+
+
+
+
+
+
+
+
+
+
+ 
