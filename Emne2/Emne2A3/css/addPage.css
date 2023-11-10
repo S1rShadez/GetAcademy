@@ -9,21 +9,6 @@
     margin-right: 30px;
 }
 
-#repeating {
-}
-
-#submitA {
-}
-
-#addTform {
-}
-
-/* -- Gform -- */
-
-#addGform {
-
-}
-
 #goalDes {
     border-right: 1px solid white;
     display: flex;
@@ -49,17 +34,6 @@
 
 /* -- Universal -- */
 
-#repeats {
-}
-#selector {
-}
-
-
-#checkonce {
-}
-#checkrep {
-}
-
 
 
 label {
@@ -77,9 +51,6 @@ input.innersubmit {
 input.innersubmit:hover {
     cursor: pointer;
     transition: 0.2s;
-}
-
-input.submit {
 }
 
 .addbtn {

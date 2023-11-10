@@ -3,7 +3,7 @@ body {
     background-color: rgb(37, 35, 46);
     color: white;
     height: 100%;
-    background-image: url("/img/dashboard.png");
+    background-image: url("../img/dashboard.png");
     background-repeat: repeat;
 }
 
